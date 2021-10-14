@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="https://fonts.googleapis.com/css2?family=Mukta&family=WindSong:wght@500&display=swap" rel="stylesheet">
+    <title>Todo list</title>
+    <link rel="shortcut icon" href="https://img.icons8.com/ios/50/000000/reply-all.png">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+<div class="header" id="myDiv">
+    <h2 style="margin:5px;">Django bajariladigan ishlar ro'yxati</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input id="myInput" name="title" placeholder="Yozing ..." type="text">
+        <button class="addBtn" style="border:none" type="submit">Qo'shish</button>
+    </form>
+</div>
+<ul id="myUl">
+    {% for todo in todos reversed %}
+    <li>{{todo.title | title}}<span class="close"><a class="del" href="delete/{{todo.id}}">Delete</a></span></li>
+    {% endfor %}
+</ul>
+</body>
+</html>
